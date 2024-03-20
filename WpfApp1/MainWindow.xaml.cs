@@ -163,7 +163,7 @@ namespace WpfApp1
         {
             Console.WriteLine("OnStopTimeReceived: " + response);
 
-            var stopTimeResponse = JsonConvert.DeserializeObject<StopTimeResponse[]>(response.ToString());
+            var stopTimeResponse = JsonConvert.DeserializeObject<RequestResponse[]>(response.ToString());
 
             if (stopTimeResponse != null && stopTimeResponse.Length > 0)
             {
@@ -251,7 +251,7 @@ namespace WpfApp1
 
         private void ScheduleSendingData()
         {
-            DateTime targetTime = DateTime.Today.AddHours(19).AddMinutes(24);
+            DateTime targetTime = DateTime.Today.AddHours(21);
             //DateTime targetTime = DateTime.Today.AddHours(15).AddMinutes(50);
 
             if (DateTime.Now > targetTime)
@@ -557,7 +557,7 @@ namespace WpfApp1
                     timer.Stop();
                     UpdateTextBlock("Время вышло!");
                     LockKeyboard();
-                    WindowState = WindowState.Minimized;
+                    WindowState = WindowState.Maximized;
                     Topmost = true;
                     socket.EmitAsync("timer-finished");
                     currentQuestionIndex = 0;
